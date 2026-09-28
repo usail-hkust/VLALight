@@ -1,0 +1,17 @@
+### model
+model_name_or_path: /path/to/models/Qwen3.5-9B
+adapter_name_or_path: ./saves/qwen35-9b/lora/v34_four_video_context_llmlight
+template: qwen3_5_nothink
+trust_remote_code: true
+image_min_pixels: 65536
+image_max_pixels: 1105920
+video_min_pixels: 65536
+video_max_pixels: 1105920
+video_fps: 1.0
+video_maxlen: 6
+
+### export
+export_dir: ./saves/qwen35-9b/merged/v34_four_video_context_llmlight
+export_size: 5
+export_device: auto
+export_legacy_format: false

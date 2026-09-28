@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<input>
+		<net-file value="newyork_phase.net.xml"/>
+		<route-files value="newyork.rou.xml"/>
+	</input>
+	<time>
+		<begin value="0"/>
+		<end value="3600"/>
+	</time>
+	<processing>
+		<ignore-route-errors value="true"/>
+	</processing>
+</configuration>

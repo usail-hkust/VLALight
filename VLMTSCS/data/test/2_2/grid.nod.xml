@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<nodes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/nodes_file.xsd">
+	<node id="intersection_0_0" x="0" y="0" type="traffic_light_right_on_red" />
+	<node id="intersection_1_0" x="400" y="0" type="traffic_light_right_on_red" />
+	<node id="intersection_0_1" x="0" y="800" type="traffic_light_right_on_red" />
+	<node id="intersection_1_1" x="400" y="800" type="traffic_light_right_on_red" />
+	<node id="boundary_0_S" x="0" y="-800" type="priority" />
+	<node id="boundary_1_S" x="400" y="-800" type="priority" />
+	<node id="boundary_0_N" x="0" y="1600" type="priority" />
+	<node id="boundary_1_N" x="400" y="1600" type="priority" />
+	<node id="boundary_W_0" x="-400" y="0" type="priority" />
+	<node id="boundary_W_1" x="-400" y="800" type="priority" />
+	<node id="boundary_E_0" x="800" y="0" type="priority" />
+	<node id="boundary_E_1" x="800" y="800" type="priority" />
+</nodes>

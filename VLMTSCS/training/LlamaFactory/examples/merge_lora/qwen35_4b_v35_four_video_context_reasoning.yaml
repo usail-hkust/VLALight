@@ -1,0 +1,23 @@
+### Merge the final V35 4B SFT LoRA adapter.
+### The training log shows validation loss decreasing through epoch 5,
+### so the final adapter (step 845) is the current best checkpoint.
+### Do not use a quantized base model when merging LoRA adapters.
+
+### model
+model_name_or_path: /path/to/models/Qwen3.5-4B
+adapter_name_or_path: ./saves/qwen35-4b/lora/v35_four_video_context_reasoning
+template: qwen3_5_nothink
+trust_remote_code: true
+# These values must remain identical to the training YAML.
+image_min_pixels: 65536
+image_max_pixels: 1105920
+video_min_pixels: 65536
+video_max_pixels: 1105920
+video_fps: 1.0
+video_maxlen: 6
+
+### export
+export_dir: ./saves/qwen35-4b/merged/v35_four_video_context_reasoning
+export_size: 5
+export_device: auto
+export_legacy_format: false

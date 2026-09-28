@@ -1,0 +1,174 @@
+{
+  "scenario": "test_2x2",
+  "description": "2x2 grid network topology for multi-intersection coordination",
+  "intersections": {
+    "intersection_0_0": {
+      "position": {"x": 0, "y": 0},
+      "phases": ["ETWT", "NTST", "ELWL", "NLSL"],
+      "neighbors": {
+        "E": {
+          "neighbor_id": "intersection_1_0",
+          "distance_m": 400,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 36.0,
+          "lanes": 3,
+          "my_exit_direction": "E",
+          "their_entry_direction": "W"
+        },
+        "N": {
+          "neighbor_id": "intersection_0_1",
+          "distance_m": 800,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 72.0,
+          "lanes": 3,
+          "my_exit_direction": "N",
+          "their_entry_direction": "S"
+        },
+        "W": {
+          "neighbor_id": null,
+          "distance_m": 400,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 36.0,
+          "lanes": 3,
+          "is_boundary": true,
+          "boundary_id": "boundary_W_0"
+        },
+        "S": {
+          "neighbor_id": null,
+          "distance_m": 800,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 72.0,
+          "lanes": 3,
+          "is_boundary": true,
+          "boundary_id": "boundary_0_S"
+        }
+      }
+    },
+    "intersection_1_0": {
+      "position": {"x": 400, "y": 0},
+      "phases": ["ETWT", "NTST", "ELWL", "NLSL"],
+      "neighbors": {
+        "W": {
+          "neighbor_id": "intersection_0_0",
+          "distance_m": 400,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 36.0,
+          "lanes": 3,
+          "my_exit_direction": "W",
+          "their_entry_direction": "E"
+        },
+        "N": {
+          "neighbor_id": "intersection_1_1",
+          "distance_m": 800,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 72.0,
+          "lanes": 3,
+          "my_exit_direction": "N",
+          "their_entry_direction": "S"
+        },
+        "E": {
+          "neighbor_id": null,
+          "distance_m": 400,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 36.0,
+          "lanes": 3,
+          "is_boundary": true,
+          "boundary_id": "boundary_E_0"
+        },
+        "S": {
+          "neighbor_id": null,
+          "distance_m": 800,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 72.0,
+          "lanes": 3,
+          "is_boundary": true,
+          "boundary_id": "boundary_1_S"
+        }
+      }
+    },
+    "intersection_0_1": {
+      "position": {"x": 0, "y": 800},
+      "phases": ["ETWT", "NTST", "ELWL", "NLSL"],
+      "neighbors": {
+        "E": {
+          "neighbor_id": "intersection_1_1",
+          "distance_m": 400,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 36.0,
+          "lanes": 3,
+          "my_exit_direction": "E",
+          "their_entry_direction": "W"
+        },
+        "S": {
+          "neighbor_id": "intersection_0_0",
+          "distance_m": 800,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 72.0,
+          "lanes": 3,
+          "my_exit_direction": "S",
+          "their_entry_direction": "N"
+        },
+        "W": {
+          "neighbor_id": null,
+          "distance_m": 400,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 36.0,
+          "lanes": 3,
+          "is_boundary": true,
+          "boundary_id": "boundary_W_1"
+        },
+        "N": {
+          "neighbor_id": null,
+          "distance_m": 800,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 72.0,
+          "lanes": 3,
+          "is_boundary": true,
+          "boundary_id": "boundary_0_N"
+        }
+      }
+    },
+    "intersection_1_1": {
+      "position": {"x": 400, "y": 800},
+      "phases": ["ETWT", "NTST", "ELWL", "NLSL"],
+      "neighbors": {
+        "W": {
+          "neighbor_id": "intersection_0_1",
+          "distance_m": 400,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 36.0,
+          "lanes": 3,
+          "my_exit_direction": "W",
+          "their_entry_direction": "E"
+        },
+        "S": {
+          "neighbor_id": "intersection_1_0",
+          "distance_m": 800,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 72.0,
+          "lanes": 3,
+          "my_exit_direction": "S",
+          "their_entry_direction": "N"
+        },
+        "E": {
+          "neighbor_id": null,
+          "distance_m": 400,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 36.0,
+          "lanes": 3,
+          "is_boundary": true,
+          "boundary_id": "boundary_E_1"
+        },
+        "N": {
+          "neighbor_id": null,
+          "distance_m": 800,
+          "speed_limit_mps": 11.11,
+          "travel_time_s": 72.0,
+          "lanes": 3,
+          "is_boundary": true,
+          "boundary_id": "boundary_1_N"
+        }
+      }
+    }
+  }
+}

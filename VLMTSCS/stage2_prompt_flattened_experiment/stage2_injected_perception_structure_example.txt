@@ -1,0 +1,153 @@
+Stage 2 injected perception structure
+=====================================
+
+The Stage 2 prompt keeps two separate input blocks:
+
+1. local_perception: primary evidence from the target intersection.
+2. cooperative_perception: supplementary routed upstream evidence.
+
+Complete prompt injection example
+---------------------------------
+
+<local_perception>
+{
+  "current_phase": "ETWT",
+  "phases": {
+    "ETWT": {
+      "current_v": 2,
+      "current_q": 0,
+      "dv": -7,
+      "dq": -7,
+      "unserved_age": 0
+    },
+    "NTST": {
+      "current_v": 12,
+      "current_q": 12,
+      "dv": 2,
+      "dq": 5,
+      "unserved_age": 3
+    },
+    "ELWL": {
+      "current_v": 18,
+      "current_q": 18,
+      "dv": 2,
+      "dq": 2,
+      "unserved_age": 14
+    },
+    "NLSL": {
+      "current_v": 2,
+      "current_q": 2,
+      "dv": 0,
+      "dq": 2,
+      "unserved_age": 0
+    }
+  }
+}
+</local_perception>
+
+<cooperative_perception>
+{
+  "local_coordination": {
+    "ETWT": 0,
+    "NTST": 0,
+    "ELWL": 0,
+    "NLSL": 0
+  },
+  "neighbors": {
+    "east": {
+      "total_v": 6,
+      "total_q": 6,
+      "travel_time_s": 36.0
+    },
+    "west": {
+      "total_v": 5,
+      "total_q": 4,
+      "travel_time_s": 36.0
+    },
+    "north": {
+      "total_v": 13,
+      "total_q": 9,
+      "travel_time_s": 72.0
+    },
+    "south": {
+      "total_v": 0,
+      "total_q": 0,
+      "travel_time_s": 72.0
+    }
+  }
+}
+</cooperative_perception>
+
+Field construction
+------------------
+
+local_perception.current_phase
+  The phase active at the target intersection when the decision is made.
+
+local_perception.phases.<PHASE>.current_v
+  Total currently visible serviceable vehicles for the phase.
+  It is the sum of the phase's two Stage 1 movement-level v values.
+
+local_perception.phases.<PHASE>.current_q
+  Total stopped vehicles for the phase. It is the sum of the phase's two
+  Stage 1 movement-level q values and is a subset of current_v.
+
+local_perception.phases.<PHASE>.dv
+  Change in the phase's total visible demand from the first observation to
+  the latest observation in the decision window.
+
+local_perception.phases.<PHASE>.dq
+  Change in the phase's total stopped queue over the same observation window.
+
+local_perception.phases.<PHASE>.unserved_age
+  Number of observation intervals with nonzero demand since the phase was last
+  served. This is the existing Stage 1 age value with an explicit field name.
+
+cooperative_perception.local_coordination.<PHASE>
+  Total expected arrivals already routed to this target phase. It is the sum
+  of the two target-movement coordination counts belonging to the phase.
+  These vehicles are not included in local current_v or current_q.
+
+cooperative_perception.neighbors.<DIRECTION>.total_v
+  Sum of the available upstream movement v values at that neighbor. It is
+  direction-level context and does not map to one target phase.
+
+cooperative_perception.neighbors.<DIRECTION>.total_q
+  Sum of the available upstream movement q values at that neighbor. It is
+  direction-level context and does not map to one target phase.
+
+cooperative_perception.neighbors.<DIRECTION>.travel_time_s
+  Estimated travel time from that neighbor to the target intersection.
+
+Structural rules
+----------------
+
+- All four local phases must always be present in this exact order:
+  ETWT, NTST, ELWL, NLSL.
+- All four local_coordination phase keys must always be present. Use 0 when
+  the routed expected-arrival count is zero.
+- Include a neighbor direction only when an actual neighboring intersection
+  exists. Omit directions that are network boundaries.
+- Do not include movement arrays, movement breakdowns, upstream_movements,
+  source_intersection, distance_m, speed_limit_mps, or is_boundary.
+- Do not add current_v and current_q; current_q is already a subset of
+  current_v.
+- Do not add local_coordination to current_v or current_q. It describes future
+  arrivals and remains separate supplementary evidence.
+- East and west neighbors provide only broad east-west context for ETWT and
+  ELWL. North and south neighbors provide only broad north-south context for
+  NTST and NLSL.
+
+Expected interpretation of this example
+---------------------------------------
+
+ELWL has current_v=18, current_q=18, and unserved_age=14. It has the largest
+existing queue and the longest persistent unmet demand. NTST has positive dq=5,
+but its current_q=12 and unserved_age=3 are both lower. The recent NTST growth
+does not override the substantially larger and older ELWL queue. Neighbor data
+is supplementary and cannot overturn this clear local winner.
+
+Expected response:
+
+<mode>fast</mode>
+<signal>ELWL</signal>

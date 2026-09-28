@@ -1,0 +1,123 @@
+defaults:
+  - ppo_trainer
+  - _self_
+
+trainer:
+  use_v1: true
+  val_before_train: true
+  test_freq: 5
+  total_epochs: 30
+  project_name: v35_online_cooperative
+  experiment_name: stage2_online_grpo
+  default_local_dir: checkpoints/v35_online_cooperative/stage2_online_grpo
+  save_freq: 5
+  n_gpus_per_node: 4
+  nnodes: 1
+  logger: [console, tensorboard]
+  rollout_data_dir: checkpoints/v35_online_cooperative/stage2_online_grpo/rollouts
+  validation_data_dir: checkpoints/v35_online_cooperative/stage2_online_grpo/validation
+
+online_cooperative:
+  enabled: true
+  config_path: v35_online_cooperative_grpo/online_sumo.yaml
+
+algorithm:
+  # Each candidate receives one aggregate queue score; the six complete
+  # trajectories from one snapshot are compared by network GRPO.
+  # Per-intersection local GRPO credit and raw format penalties are added after
+  # the shared network advantage is computed.
+  adv_estimator: grpo
+  hierarchical_decision_advantage: true
+  local_advantage_weight: 0.5
+  format_penalty_weight: 1.0
+  use_kl_in_reward: false
+
+actor_rollout_ref:
+  actor:
+    # The dataloader batch contains master bootstrap slots; the online
+    # collector expands each slot into a complete set of intersection
+    # candidates before the actor update.
+    ppo_mini_batch_size: 4
+
+    # One sequence per GPU keeps the expanded online batch memory bounded.
+    ppo_micro_batch_size_per_gpu: 4
+
+  rollout:
+    name: vllm
+    mode: async
+    n: 1
+    temperature: 1.0
+    # The 4B checkpoint fits comfortably on one H100. TP=1 avoids the
+    # multiprocess sample_tokens RPC that can time out when temporal rollout
+    # expands a batch into hundreds of concurrent intersection requests.
+    tensor_model_parallel_size: 1
+    # Four TP=1 replicas serve the large online Stage 1/2 batches.  The
+    # previous 32/4096 limits under-filled the scheduler for long visual
+    # prompts: validation has 700 requests per generation phase and training
+    # has 672.  These limits change batching only, never request order,
+    # prompt/video content, sampling parameters, or output length.
+    # Larger scheduler batches keep the 672-request temporal generation from
+    # fragmenting into many under-filled rounds.  This changes scheduling
+    # only; response length, ordering, prompts and rollout count are intact.
+    max_num_seqs: 128
+    max_num_batched_tokens: 16384
+    # Validation expands each network snapshot into one Stage-2 request per
+    # intersection. Bound active requests inside each AgentLoopWorker while
+    # preserving the full validation set and its original output order.
+    val_max_concurrent_sequences_per_worker: 4
+    # Qwen3.5 currently fails in the vLLM TorchInductor profile pass with
+    # "standalone_compile ... has no attribute FakeTensorMode" on the HPC
+    # environment.  Eager mode bypasses that incompatible compiler path.
+    enforce_eager: true
+    # Required by VERL config validation and kept small because online batches
+    # expand each network snapshot into all intersection/rollout responses.
+    log_prob_micro_batch_size_per_gpu: 1
+    val_kwargs:
+      do_sample: false
+      temperature: 0.0
+      top_p: 1.0
+      top_k: -1
+      n: 1
+  model:
+    path: models/v35_stage2_cooperative_mode
+
+data:
+  train_files:
+    - v35_online_cooperative_grpo/data/online_train_bootstrap.jsonl
+  val_files:
+    - v35_online_cooperative_grpo/data/online_val_bootstrap.jsonl
+  train_batch_size: 4
+  gen_batch_size: 4
+  # Keep all 50 validation rows, but materialize them as five complete
+  # 10-row suites: five persistent streams for each city.  Each suite then
+  # advances those same ten masters by exactly one V25 decision cycle.
+  val_batch_size: 10
+  # Stage 1 contains four 512x960 direction videos plus coordination frames.
+  # Qwen3.5 expands a typical request to about 8.4k multimodal tokens, which
+  # must not be truncated because that breaks vision-feature alignment.
+  max_prompt_length: 12288
+  # Online SUMO-derived Stage-1 targets can exceed 512 tokens before the
+  # Stage-2 decision continuation is considered.
+  max_response_length: 4096
+  # Qwen's default chat template opens a free-form thinking section. Stage 1
+  # must emit the perception block directly, matching the V35 SFT pipeline.
+  apply_chat_template_kwargs:
+    enable_thinking: false
+  # Each online direction video contains exactly the six synchronized frames
+  # described by the Stage 1 prompt.
+  video_nframes: 6
+  return_raw_chat: true
+  return_multi_modal_inputs: true
+  filter_overlong_prompts: false
+  shuffle: false
+  # Preserve the JSONL suite order: each 10-row validation batch contains
+  # five Jinan and five Hangzhou lanes with steps 6, 8, 10, 12, 14.
+  validation_shuffle: false
+  dataloader_num_workers: 0
+
+critic:
+  enable: false
+
+reward:
+  reward_model:
+    enable: false

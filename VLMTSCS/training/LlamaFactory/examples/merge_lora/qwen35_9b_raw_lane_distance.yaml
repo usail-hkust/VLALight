@@ -1,0 +1,15 @@
+### Note: DO NOT use quantized model or quantization_bit when merging lora adapters
+
+### model
+model_name_or_path: /path/to/models/Qwen3.5-9B
+adapter_name_or_path: ./saves/qwen35-9b/lora/raw_lane_distance
+template: qwen3_5_nothink
+trust_remote_code: true
+image_max_pixels: 7000000
+video_max_pixels: 16384
+
+### export
+export_dir: ./saves/qwen35-9b/merged/raw_lane_distance
+export_size: 5
+export_device: auto
+export_legacy_format: false

@@ -1,0 +1,72 @@
+# Online Stage 2 SUMO stream configuration.
+# City network/route files are hydrated from utils.vlm_config at runtime.
+cities:
+  jinan:
+    scenario: jinan
+    data_root: ../../../data/Jinan/3_4
+    weight: 1.0
+    num_intersections: 12
+  hangzhou:
+    scenario: hangzhou
+    data_root: ../../../data/Hangzhou/4_4
+    weight: 1.0
+    num_intersections: 16
+
+train:
+  cities: [jinan, hangzhou]
+  batch_size: 1000
+  seed_base: 10001
+  seed_stride: 100000
+  stream_prefix: train
+  initial_step_stride: 0
+  # Train keeps four persistent masters, two per city.  Rows cycle through
+  # city-local slots so a master never switches to another road network.
+  persistent_stream_count: 4
+
+val:
+  cities: [jinan, hangzhou]
+  # Five independent streams per city are evaluated concurrently.
+  batch_size: 50
+  seed_base: 20001
+  seed_stride: 100000
+  stream_prefix: val
+  # Within each city, streams 00..04 first decide at steps 6, 8, 10, 12, 14.
+  initial_step_stride: 2
+
+episode_seconds: 3600
+decision_cycle_seconds: 30
+warmup_steps: 5
+num_rollouts: 6
+evaluation_decision_cycles: 3
+# Sampled/forced at t0. The following three decisions use the unmodified prompt,
+# naturally generated mode, and temperature 0; only their signals advance SUMO.
+exploration_temperature: 0.7
+evaluation_temperature: 0.0
+# Five network snapshots per city: one decision from each persistent master,
+# for one 10-sample validation batch across Jinan and Hangzhou.
+val_metric_steps: 5
+
+policy:
+  # OpenAI-compatible vLLM endpoint serving the merged Stage 2 checkpoint.
+  # For in-process VERL training, replace this factory with the current
+  # trainer/LLM-server client so updates are visible after each optimizer step.
+  base_url: http://127.0.0.1:8088
+  model: models/v35_stage2_cooperative_mode
+  # Preserve the full Stage 1/Stage 2 response budget; callers may still
+  # override this per run, but the online default must not truncate reasoning.
+  max_tokens: 4096
+  timeout: 300
+
+resources:
+  # Keep snapshot work below the headless EGL/SUMO contention point.  Each
+  # master performs warmup, state extraction, and video rendering in one RPC;
+  # higher fan-out can leave all RPCs connected but waiting in first-frame EGL.
+  # Override per run with resources.max_parallel_masters=<n> when appropriate.
+  # Train keeps one persistent master per city-local dataloader slot (4 here).
+  # Validation overrides this with V35_VAL_MASTER_CONCURRENCY=10. Its
+  # render/export RPC fan-out is independently bounded by
+  # V35_VAL_MATERIALIZE_CONCURRENCY (default 2).
+  max_parallel_masters: 4
+  ray_num_cpus_per_master: 1
+  ray_num_cpus_per_rollout: 1
+  snapshot_root: runtime/v35_online_snapshots

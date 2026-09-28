@@ -1,0 +1,55 @@
+### model
+model_name_or_path: /path/to/models/Qwen3.5-9B
+trust_remote_code: true
+image_max_pixels: 7000000
+video_max_pixels: 16384
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target: all
+additional_target: model.visual.merger
+freeze_vision_tower: true
+freeze_multi_modal_projector: false
+freeze_language_model: false
+deepspeed: examples/deepspeed/ds_z2_config.json
+
+### dataset
+dataset_dir: ./project/sft_lane_distance_dataset
+media_dir: ./project/sft_lane_distance_dataset
+dataset: vlm_lane_distance_train
+eval_dataset: vlm_lane_distance_val
+template: qwen3_5_nothink
+cutoff_len: 16384
+preprocessing_num_workers: 8
+dataloader_num_workers: 4
+overwrite_cache: true
+
+### output
+output_dir: ./saves/qwen35-9b/lora/lane_distance
+logging_steps: 5
+save_steps: 100
+eval_steps: 100
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: false
+report_to: none
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 1.0e-4
+num_train_epochs: 5.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval
+per_device_eval_batch_size: 1
+eval_strategy: steps

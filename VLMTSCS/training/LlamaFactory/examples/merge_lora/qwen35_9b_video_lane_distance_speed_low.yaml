@@ -1,0 +1,20 @@
+### Note: DO NOT use a quantized base model when merging LoRA adapters.
+
+### model
+model_name_or_path: /path/to/models/Qwen3.5-9B
+adapter_name_or_path: ./saves/qwen35-9b/lora/video_lane_distance_speed/checkpoint-1500
+template: qwen3_5_nothink
+trust_remote_code: true
+
+# Keep the processor settings identical to the first low-pixel video run.
+image_max_pixels: 7000000
+video_max_pixels: 262144
+video_min_pixels: 65536
+video_fps: 1.0
+video_maxlen: 10
+
+### export
+export_dir: ./saves/qwen35-9b/merged/video_lane_distance_speed_low
+export_size: 5
+export_device: auto
+export_legacy_format: false

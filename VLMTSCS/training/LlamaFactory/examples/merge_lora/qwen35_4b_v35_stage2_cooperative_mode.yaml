@@ -1,0 +1,18 @@
+# Merge the Stage 2 cooperative-decision LoRA into the Stage 1 perception model.
+model_name_or_path: ./saves/qwen35-4b/merged/v35_local_perception_coord_512x960
+adapter_name_or_path: ./saves/qwen35-4b/lora/v35_stage2_cooperative_mode
+
+template: qwen3_5_nothink
+trust_remote_code: true
+
+image_min_pixels: 65536
+image_max_pixels: 491520
+video_min_pixels: 65536
+video_max_pixels: 491520
+video_fps: 1.0
+video_maxlen: 6
+
+export_dir: ./saves/qwen35-4b/merged/v35_stage2_cooperative_mode
+export_size: 5
+export_device: auto
+export_legacy_format: false

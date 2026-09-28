@@ -1,0 +1,785 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-04-30T17:17:27",
+  "scenario_name": "grid",
+  "source": {
+    "sumocfg": "data/test/2_2/grid.sumocfg",
+    "net": "data/test/2_2/grid.net.xml",
+    "phase_mapping": "data/test/2_2/test_2x2_phase_mapping.json",
+    "route_files": [],
+    "missing_route_files": [
+      "data/test/2_2/grid_repaired.rou.xml"
+    ]
+  },
+  "units": {
+    "distance": "meter",
+    "speed": "meter_per_second",
+    "travel_time": "second"
+  },
+  "intersections": {
+    "intersection_0_0": {
+      "coordinates": {
+        "x": 400.0,
+        "y": 800.0
+      },
+      "junction_type": "traffic_light_right_on_red",
+      "phases": [
+        "ETWT",
+        "NTST",
+        "ELWL",
+        "NLSL"
+      ],
+      "upstream": {
+        "N": {
+          "neighbor_id": "intersection_0_1",
+          "distance_m": 772.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 69.559,
+          "is_boundary": false
+        },
+        "E": {
+          "neighbor_id": "intersection_1_0",
+          "distance_m": 372.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 33.555,
+          "is_boundary": false
+        },
+        "S": {
+          "neighbor_id": null,
+          "distance_m": 786.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 70.783,
+          "is_boundary": true
+        },
+        "W": {
+          "neighbor_id": null,
+          "distance_m": 386.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 34.779,
+          "is_boundary": true
+        }
+      },
+      "downstream": {
+        "E": {
+          "neighbor_id": "intersection_1_0",
+          "distance_m": 372.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 33.555,
+          "is_boundary": false
+        },
+        "N": {
+          "neighbor_id": "intersection_0_1",
+          "distance_m": 772.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 69.559,
+          "is_boundary": false
+        },
+        "W": {
+          "neighbor_id": null,
+          "distance_m": 386.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 34.779,
+          "is_boundary": true
+        },
+        "S": {
+          "neighbor_id": null,
+          "distance_m": 786.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 70.783,
+          "is_boundary": true
+        }
+      },
+      "movements": {
+        "N": {
+          "right": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "W",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          },
+          "straight": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "S",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          },
+          "left": {
+            "target_neighbor_id": "intersection_1_0",
+            "target_entry_direction": "W",
+            "target_exit_direction": "E",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          }
+        },
+        "E": {
+          "right": {
+            "target_neighbor_id": "intersection_0_1",
+            "target_entry_direction": "S",
+            "target_exit_direction": "N",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          },
+          "straight": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "W",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          },
+          "left": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "S",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          }
+        },
+        "S": {
+          "right": {
+            "target_neighbor_id": "intersection_1_0",
+            "target_entry_direction": "W",
+            "target_exit_direction": "E",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          },
+          "straight": {
+            "target_neighbor_id": "intersection_0_1",
+            "target_entry_direction": "S",
+            "target_exit_direction": "N",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          },
+          "left": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "W",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          }
+        },
+        "W": {
+          "right": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "S",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          },
+          "straight": {
+            "target_neighbor_id": "intersection_1_0",
+            "target_entry_direction": "W",
+            "target_exit_direction": "E",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          },
+          "left": {
+            "target_neighbor_id": "intersection_0_1",
+            "target_entry_direction": "S",
+            "target_exit_direction": "N",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          }
+        }
+      }
+    },
+    "intersection_0_1": {
+      "coordinates": {
+        "x": 400.0,
+        "y": 1600.0
+      },
+      "junction_type": "traffic_light_right_on_red",
+      "phases": [
+        "ETWT",
+        "NTST",
+        "ELWL",
+        "NLSL"
+      ],
+      "upstream": {
+        "S": {
+          "neighbor_id": "intersection_0_0",
+          "distance_m": 772.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 69.559,
+          "is_boundary": false
+        },
+        "E": {
+          "neighbor_id": "intersection_1_1",
+          "distance_m": 372.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 33.555,
+          "is_boundary": false
+        },
+        "N": {
+          "neighbor_id": null,
+          "distance_m": 786.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 70.783,
+          "is_boundary": true
+        },
+        "W": {
+          "neighbor_id": null,
+          "distance_m": 386.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 34.779,
+          "is_boundary": true
+        }
+      },
+      "downstream": {
+        "E": {
+          "neighbor_id": "intersection_1_1",
+          "distance_m": 372.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 33.555,
+          "is_boundary": false
+        },
+        "N": {
+          "neighbor_id": null,
+          "distance_m": 786.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 70.783,
+          "is_boundary": true
+        },
+        "W": {
+          "neighbor_id": null,
+          "distance_m": 386.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 34.779,
+          "is_boundary": true
+        },
+        "S": {
+          "neighbor_id": "intersection_0_0",
+          "distance_m": 772.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 69.559,
+          "is_boundary": false
+        }
+      },
+      "movements": {
+        "S": {
+          "right": {
+            "target_neighbor_id": "intersection_1_1",
+            "target_entry_direction": "W",
+            "target_exit_direction": "E",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          },
+          "straight": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "N",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          },
+          "left": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "W",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          }
+        },
+        "E": {
+          "right": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "N",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          },
+          "straight": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "W",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          },
+          "left": {
+            "target_neighbor_id": "intersection_0_0",
+            "target_entry_direction": "N",
+            "target_exit_direction": "S",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          }
+        },
+        "N": {
+          "right": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "W",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          },
+          "straight": {
+            "target_neighbor_id": "intersection_0_0",
+            "target_entry_direction": "N",
+            "target_exit_direction": "S",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          },
+          "left": {
+            "target_neighbor_id": "intersection_1_1",
+            "target_entry_direction": "W",
+            "target_exit_direction": "E",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          }
+        },
+        "W": {
+          "right": {
+            "target_neighbor_id": "intersection_0_0",
+            "target_entry_direction": "N",
+            "target_exit_direction": "S",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          },
+          "straight": {
+            "target_neighbor_id": "intersection_1_1",
+            "target_entry_direction": "W",
+            "target_exit_direction": "E",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          },
+          "left": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "N",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          }
+        }
+      }
+    },
+    "intersection_1_0": {
+      "coordinates": {
+        "x": 800.0,
+        "y": 800.0
+      },
+      "junction_type": "traffic_light_right_on_red",
+      "phases": [
+        "ETWT",
+        "NTST",
+        "ELWL",
+        "NLSL"
+      ],
+      "upstream": {
+        "W": {
+          "neighbor_id": "intersection_0_0",
+          "distance_m": 372.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 33.555,
+          "is_boundary": false
+        },
+        "N": {
+          "neighbor_id": "intersection_1_1",
+          "distance_m": 772.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 69.559,
+          "is_boundary": false
+        },
+        "S": {
+          "neighbor_id": null,
+          "distance_m": 786.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 70.783,
+          "is_boundary": true
+        },
+        "E": {
+          "neighbor_id": null,
+          "distance_m": 386.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 34.779,
+          "is_boundary": true
+        }
+      },
+      "downstream": {
+        "E": {
+          "neighbor_id": null,
+          "distance_m": 386.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 34.779,
+          "is_boundary": true
+        },
+        "N": {
+          "neighbor_id": "intersection_1_1",
+          "distance_m": 772.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 69.559,
+          "is_boundary": false
+        },
+        "W": {
+          "neighbor_id": "intersection_0_0",
+          "distance_m": 372.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 33.555,
+          "is_boundary": false
+        },
+        "S": {
+          "neighbor_id": null,
+          "distance_m": 786.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 70.783,
+          "is_boundary": true
+        }
+      },
+      "movements": {
+        "W": {
+          "right": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "S",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          },
+          "straight": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "E",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          },
+          "left": {
+            "target_neighbor_id": "intersection_1_1",
+            "target_entry_direction": "S",
+            "target_exit_direction": "N",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          }
+        },
+        "N": {
+          "right": {
+            "target_neighbor_id": "intersection_0_0",
+            "target_entry_direction": "E",
+            "target_exit_direction": "W",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          },
+          "straight": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "S",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          },
+          "left": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "E",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          }
+        },
+        "S": {
+          "right": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "E",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          },
+          "straight": {
+            "target_neighbor_id": "intersection_1_1",
+            "target_entry_direction": "S",
+            "target_exit_direction": "N",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          },
+          "left": {
+            "target_neighbor_id": "intersection_0_0",
+            "target_entry_direction": "E",
+            "target_exit_direction": "W",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          }
+        },
+        "E": {
+          "right": {
+            "target_neighbor_id": "intersection_1_1",
+            "target_entry_direction": "S",
+            "target_exit_direction": "N",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          },
+          "straight": {
+            "target_neighbor_id": "intersection_0_0",
+            "target_entry_direction": "E",
+            "target_exit_direction": "W",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          },
+          "left": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "S",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          }
+        }
+      }
+    },
+    "intersection_1_1": {
+      "coordinates": {
+        "x": 800.0,
+        "y": 1600.0
+      },
+      "junction_type": "traffic_light_right_on_red",
+      "phases": [
+        "ETWT",
+        "NTST",
+        "ELWL",
+        "NLSL"
+      ],
+      "upstream": {
+        "W": {
+          "neighbor_id": "intersection_0_1",
+          "distance_m": 372.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 33.555,
+          "is_boundary": false
+        },
+        "S": {
+          "neighbor_id": "intersection_1_0",
+          "distance_m": 772.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 69.559,
+          "is_boundary": false
+        },
+        "N": {
+          "neighbor_id": null,
+          "distance_m": 786.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 70.783,
+          "is_boundary": true
+        },
+        "E": {
+          "neighbor_id": null,
+          "distance_m": 386.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 34.779,
+          "is_boundary": true
+        }
+      },
+      "downstream": {
+        "E": {
+          "neighbor_id": null,
+          "distance_m": 386.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 34.779,
+          "is_boundary": true
+        },
+        "N": {
+          "neighbor_id": null,
+          "distance_m": 786.4,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 70.783,
+          "is_boundary": true
+        },
+        "W": {
+          "neighbor_id": "intersection_0_1",
+          "distance_m": 372.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 33.555,
+          "is_boundary": false
+        },
+        "S": {
+          "neighbor_id": "intersection_1_0",
+          "distance_m": 772.8,
+          "avg_speed_mps": 11.11,
+          "travel_time_s": 69.559,
+          "is_boundary": false
+        }
+      },
+      "movements": {
+        "W": {
+          "right": {
+            "target_neighbor_id": "intersection_1_0",
+            "target_entry_direction": "N",
+            "target_exit_direction": "S",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          },
+          "straight": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "E",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          },
+          "left": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "N",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          }
+        },
+        "S": {
+          "right": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "E",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          },
+          "straight": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "N",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          },
+          "left": {
+            "target_neighbor_id": "intersection_0_1",
+            "target_entry_direction": "E",
+            "target_exit_direction": "W",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          }
+        },
+        "N": {
+          "right": {
+            "target_neighbor_id": "intersection_0_1",
+            "target_entry_direction": "E",
+            "target_exit_direction": "W",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          },
+          "straight": {
+            "target_neighbor_id": "intersection_1_0",
+            "target_entry_direction": "N",
+            "target_exit_direction": "S",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          },
+          "left": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "E",
+            "distance_m": 386.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 34.779,
+            "is_boundary": true
+          }
+        },
+        "E": {
+          "right": {
+            "target_neighbor_id": null,
+            "target_entry_direction": null,
+            "target_exit_direction": "N",
+            "distance_m": 786.4,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 70.783,
+            "is_boundary": true
+          },
+          "straight": {
+            "target_neighbor_id": "intersection_0_1",
+            "target_entry_direction": "E",
+            "target_exit_direction": "W",
+            "distance_m": 372.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 33.555,
+            "is_boundary": false
+          },
+          "left": {
+            "target_neighbor_id": "intersection_1_0",
+            "target_entry_direction": "N",
+            "target_exit_direction": "S",
+            "distance_m": 772.8,
+            "avg_speed_mps": 11.11,
+            "travel_time_s": 69.559,
+            "is_boundary": false
+          }
+        }
+      }
+    }
+  }
+}

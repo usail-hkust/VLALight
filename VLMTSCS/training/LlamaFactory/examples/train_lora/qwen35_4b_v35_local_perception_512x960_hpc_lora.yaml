@@ -1,0 +1,64 @@
+### model
+model_name_or_path: /path/to/models/Qwen3.5-4B
+trust_remote_code: true
+image_min_pixels: 65536
+image_max_pixels: 491520
+video_min_pixels: 65536
+video_max_pixels: 491520
+video_fps: 1.0
+video_maxlen: 6
+
+### method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target: all
+additional_target: null
+freeze_vision_tower: true
+freeze_multi_modal_projector: true
+freeze_language_model: false
+deepspeed: examples/deepspeed/ds_z3_offload_no_persist_config.json
+disable_gradient_checkpointing: false
+flash_attn: sdpa
+enable_liger_kernel: true
+
+### dataset
+dataset_dir: ./project/sft_v35_local_perception_dataset_reduced_pixels
+media_dir: ./project/sft_v35_local_perception_dataset_reduced_pixels
+dataset: v35_local_perception_train
+eval_dataset: v35_local_perception_val
+template: qwen3_5_nothink
+cutoff_len: 65536
+preprocessing_num_workers: 8
+dataloader_num_workers: 4
+overwrite_cache: true
+
+### output
+output_dir: ./saves/qwen35-4b/lora/v35_local_perception_coord_512x960
+logging_steps: 5
+save_steps: 100
+eval_steps: 100
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: false
+report_to: none
+
+### train
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 2
+learning_rate: 1.0e-4
+num_train_epochs: 5.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+resume_from_checkpoint: null
+
+### eval
+per_device_eval_batch_size: 1
+eval_strategy: steps
+eval_accumulation_steps: 1
+save_strategy: steps

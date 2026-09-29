@@ -6,7 +6,7 @@ set -xeuo pipefail
 
 MODEL_PATH=${MODEL_PATH:?Set MODEL_PATH to the Qwen3.5 base model directory}
 SFT_LORA_PATH=${SFT_LORA_PATH:?Set SFT_LORA_PATH to the completed V35 SFT LoRA directory}
-DATASET_DIR=${DATASET_DIR:-$HOME/VLMTSCS/grpo_v30_offline_local_video_dataset}
+DATASET_DIR=${DATASET_DIR:-$HOME/VLALight/grpo_v30_offline_local_video_dataset}
 NDEVICES_PER_NODE=${NDEVICES_PER_NODE:-4}
 SMOKE=${SMOKE:-0}
 

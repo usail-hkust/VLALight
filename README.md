@@ -13,8 +13,6 @@ The merged VLALight-4B checkpoint and model card are available on Hugging Face: 
 hf download anonymous-work/VLALight-4B --local-dir ./checkpoints/VLALight-4B
 ```
 
-Serve the downloaded checkpoint through a compatible OpenAI-style chat-completion endpoint, then configure the project endpoint and served model ID for evaluation. SUMO, rendering assets, scenario data, and project prompts are still required; downloading the checkpoint alone does not run a simulation.
-
 ## Project Structure
 
 The main implementation is located in `VLMTSCS/`:

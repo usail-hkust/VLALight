@@ -5,6 +5,16 @@
 ![alt text](image.png)
 
 Traffic signal control (TSC) plays an important role in managing urban traffic flow and reducing congestion. In recent years, roadside cameras have become widely deployed at signalized intersections, providing continuous visual observations of traffic conditions. However, the potential of using these visual observations directly for traffic signal control remains largely unexplored. Most reinforcement learning and large language model (LLM)-based controllers still rely on complete, structured traffic states provided by simulators, which offer an idealized description of traffic conditions. Recent vision-language models (VLMs) introduce visual scene understanding, but commonly use VLMs as perception modules or high-level planners while delegating signal control to separate RL or language-model components. To bridge this gap, we present VLALight, an end-to-end vision-language-action (VLA) model for traffic signal control. Specifically, VLALight extracts traffic information from physical visual observations and reasons over dynamic scenes with multiple vehicles, lanes, and directions. It then incorporates information from neighbouring intersections to coordinate signal decisions across the road network. In addition, we introduce a cooperative reinforcement learning framework that leverages local and network-level traffic feedback to train a VLA agent that coordinates multi-intersection signal control and adapts its reasoning depth to traffic complexity. Experiments on seven real-world traffic-flow datasets from three urban networks, rendered in a video-enabled traffic simulator, show that VLALight achieves strong and generalizable control performance across diverse traffic scenarios.
+## Model Checkpoint
+
+The merged VLALight-4B checkpoint and model card are available on Hugging Face: [anonymous-work/VLALight-4B](https://huggingface.co/anonymous-work/VLALight-4B).
+
+```bash
+hf download anonymous-work/VLALight-4B --local-dir ./checkpoints/VLALight-4B
+```
+
+Serve the downloaded checkpoint through a compatible OpenAI-style chat-completion endpoint, then configure the project endpoint and served model ID for evaluation. SUMO, rendering assets, scenario data, and project prompts are still required; downloading the checkpoint alone does not run a simulation.
+
 ## Project Structure
 
 The main implementation is located in `VLMTSCS/`:

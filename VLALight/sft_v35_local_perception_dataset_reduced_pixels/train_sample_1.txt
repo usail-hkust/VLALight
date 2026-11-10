@@ -1,0 +1,127 @@
+[SYSTEM]
+You are a visual traffic perception model for a four-way intersection.
+
+You receive four direction-specific videos of the current intersection and any available upstream coordination frames. Infer only the structured traffic features supported by the visual evidence.
+
+Right-turn movements are permanently permissive and are not controlled by the four candidate signal phases.
+
+Return exactly one <perception>...</perception> block. Do not output a mode, reasoning, signal decision, or any text outside the perception block.
+
+[USER]
+Intersection: intersection_7_4
+Current phase: NTST
+
+Visual inputs:
+- East approach video: <video>
+- West approach video: <video>
+- North approach video: <video>
+- South approach video: <video>
+<image><image><image>
+- Use every direction-labeled upstream coordination frame supplied with this sample.
+- Coordination frame inputs, in this exact order: N, S, W.
+- The coordination-frame label is the target intersection's entry direction. Use it to attribute movement counts. Only available frames are supplied, so their number may vary with road-network boundary.
+
+Upstream coordination-frame convention:
+- A coordination frame is an upstream view that provides evidence about vehicles traveling toward this intersection.
+- The coordination-frame label is the target intersection's entry direction. Attribute counts using this mapping: E frame -> ET and EL; W frame -> WT and WL; N frame -> NT and NL; S frame -> ST and SL.
+- Inspect the vehicles entering toward the target intersection in each supplied upstream frame.
+- A missing coordination direction means no upstream visual evidence is available for that target-entry direction, usually because of a road-network boundary. Do not treat a missing frame as zero vehicles and do not infer its counts from another direction.
+- Only supplied coordination frames may be used. Keep coordinated-arrival counts separate from current_v and current_q; do not add them to the current intersection counts.
+
+Controller-provided persistent-demand history:
+nonzero_v_history_length_since_last_service
+- ETWT: 0
+- NTST: 1
+- ELWL: 0
+- NLSL: 1
+
+Feature construction:
+Temporal convention:
+- Each approach video contains six synchronized frames sampled every 5 seconds: t=5s, 10s, 15s, 20s, 25s, and 30s within the current 30-second decision window.
+- The traffic-signal decision is made at the end of this window, at t=30s.
+- current_v and current_q describe the latest observation at t=30s.
+- V30-V5 and Q30-Q5 compare the latest frame at t=30s with the earliest frame at t=5s.
+- V30-V15 compares t=30s with the third frame at t=15s.
+- V30-V15 is used only for coordinated-arrival estimates where is_boundary="yes". Do not interpret it as an additional general demand trend.
+
+Use the four intersection videos and the available upstream coordination frames to construct a structured perception for all four candidate phases.
+
+For every phase:
+- estimate the total visible vehicles and their two movement-level counts;
+- estimate the stopped subset of those vehicles;
+- compare the earliest and latest observations to estimate demand and queue trends;
+- use available upstream frames to estimate coordinated arrivals.
+
+Include all four phases in the perception output, including phases with zero visible vehicles. Do not invent vehicles that are not visible.
+
+Note on structured traffic features:
+- Current V is the total immediately visible service demand in the two movements released by a phase. Its breakdown shows how this total is distributed between the two movements; do not add the breakdown counts to the total again. Current q is the stopped subset of Current V, used only to indicate urgency; do not add q to V.
+- V30-V5 measures the change in visible demand from t=5s to t=30s; Q30-Q5 measures the change in stopped vehicles from t=5s to t=30s.
+- coord records movement-level potential arrivals. It uses the two movement keys of the phase. Each count is separate from local v and q; do not add it to local visible demand. is_boundary="no" means the count is estimated from an available upstream coordination frame. is_boundary="yes" means this is a road-network boundary direction, and the count is estimated from local V30-V15 instead.
+- nonzero_v_history_length_since_last_service records how many observation steps had Current V greater than zero since this phase was last served. It provides historical context about recurring unserved demand and should be interpreted alongside current demand, recent trends, and coordinated arrivals.
+
+Your task is to construct the structured visual perception for all four candidate phases.
+
+Output exactly one <perception>...</perception> block and nothing else. Do not output mode, reasoning, signal, or any traffic-control decision.
+
+Perception schema requirements:
+
+Field meanings:
+- current_phase: the phase active at the end of the observation window.
+- v: visible vehicle counts at t=30 for the two movements in the phase.
+- q: stopped-vehicle counts at t=30 for the same two movements.
+- dv: V30 - V5, the change in visible vehicles over the window.
+- dq: Q30 - Q5, the change in stopped vehicles over the window.
+- age: number of observation steps with v>0 since this phase was last served.
+- coord: potential arrival counts for the two movements. Each movement has count and is_boundary (exactly "yes" or "no").
+
+Array order is fixed: ETWT=[ET, WT], NTST=[NT, ST], ELWL=[EL, WL], NLSL=[NL, SL].
+Positive dv/dq means the count increased; negative dv/dq means it decreased.
+
+<perception>
+{
+  "current_phase": "...",
+  "phases": {
+    "ETWT": {"v": ["...", "..."], "q": ["...", "..."], "dv": "...", "dq": "...", "age": "...", "coord": {"ET": {"count": "...", "is_boundary": "..."}, "WT": {"count": "...", "is_boundary": "..."}}},
+    "NTST": {"v": ["...", "..."], "q": ["...", "..."], "dv": "...", "dq": "...", "age": "...", "coord": {"NT": {"count": "...", "is_boundary": "..."}, "ST": {"count": "...", "is_boundary": "..."}}},
+    "ELWL": {"v": ["...", "..."], "q": ["...", "..."], "dv": "...", "dq": "...", "age": "...", "coord": {"EL": {"count": "...", "is_boundary": "..."}, "WL": {"count": "...", "is_boundary": "..."}}},
+    "NLSL": {"v": ["...", "..."], "q": ["...", "..."], "dv": "...", "dq": "...", "age": "...", "coord": {"NL": {"count": "...", "is_boundary": "..."}, "SL": {"count": "...", "is_boundary": "..."}}}
+  }
+}
+</perception>
+
+
+[ASSISTANT]
+<perception>
+{
+  "current_phase": "NTST",
+  "phases": {
+    "ETWT": {"v": [0, 0], "q": [0, 0], "dv": 0, "dq": 0, "age": 0, "coord": {"ET": {"count": 0, "is_boundary": "yes"}, "WT": {"count": 0, "is_boundary": "no"}}},
+    "NTST": {"v": [1, 1], "q": [0, 0], "dv": 1, "dq": 0, "age": 1, "coord": {"NT": {"count": 0, "is_boundary": "no"}, "ST": {"count": 0, "is_boundary": "no"}}},
+    "ELWL": {"v": [0, 0], "q": [0, 0], "dv": 0, "dq": 0, "age": 0, "coord": {"EL": {"count": 0, "is_boundary": "yes"}, "WL": {"count": 0, "is_boundary": "no"}}},
+    "NLSL": {"v": [2, 0], "q": [1, 0], "dv": 2, "dq": 1, "age": 1, "coord": {"NL": {"count": 0, "is_boundary": "no"}, "SL": {"count": 0, "is_boundary": "no"}}}
+  }
+}
+</perception>
+
+[VIDEOS]
+videos/newyork_45/step_0118/intersection_7_4/decision_window_E.mp4
+videos/newyork_45/step_0118/intersection_7_4/decision_window_W.mp4
+videos/newyork_45/step_0118/intersection_7_4/decision_window_N.mp4
+videos/newyork_45/step_0118/intersection_7_4/decision_window_S.mp4
+
+[IMAGES]
+images/newyork_45/step_0119/intersection_7_4/coordination_frame_N.jpg
+images/newyork_45/step_0119/intersection_7_4/coordination_frame_S.jpg
+images/newyork_45/step_0119/intersection_7_4/coordination_frame_W.jpg
+
+[META]
+{
+  "city": "newyork_45",
+  "intersection": "intersection_7_4",
+  "decision_step": 119,
+  "source_step": 118,
+  "mode": "slow",
+  "selected_phase": "NLSL",
+  "sample_id": "newyork_45_step_0119_intersection_7_4"
+}

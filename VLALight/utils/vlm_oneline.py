@@ -1452,6 +1452,7 @@ class VLMOneLine:
             candidates.append(os.fspath(configured))
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         candidates.extend([
+            os.path.join(project_root, 'VLALight', 'scenario_assets', 'movement_routes', f'movement_routes_{scenario}.json'),
             os.path.join(project_root, 'scenario_assets', 'movement_routes', f'movement_routes_{scenario}.json'),
             os.path.join(project_root, 'training', 'ada_v1', 'verl', 'v35_online_cooperative_grpo', 'artifacts', f'movement_routes_{scenario}.json'),
         ])

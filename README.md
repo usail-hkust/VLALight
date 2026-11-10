@@ -44,10 +44,22 @@ The online RL code under `training/ada_v1/verl/` is a separate training pipeline
 
 ## Video-Agent Inference
 
+### Configure the API and model
+
+Edit `VLALight/utils/vlm_config.py` before running inference:
+
+- In `VLM_API_CONFIG`, set `VLM_API_URL` to your OpenAI-compatible endpoint including `/v1/chat/completions`, `VLM_API_KEY` if required, and `VLM_MODEL` to the model ID served by that endpoint. The existing configuration reads the model ID from the `VLM_MODEL` environment variable.
+- In `TWO_STAGE_CONFIG`, configure `DECISION_API_URL`, `DECISION_API_KEY`, and `DECISION_MODEL` for Stage 2. Set these fields to empty strings to inherit the main API settings. Clear or replace the explicit default decision URL when using a remote endpoint.
+- Leave `PERCEPTION_API_URL`, `PERCEPTION_API_KEY`, and `PERCEPTION_MODEL` empty to reuse the main API settings for Stage 1, or set them for a separate perception service.
+
+The model ID can be an absolute checkpoint path advertised by the API server. It is sent in the request's `model` field; the simulator does not require that checkpoint to exist locally. Do not commit private API addresses or credentials.
+
+The implementation directory in this repository is `VLALight/`; run the inference command from there.
+
 Run a complete simulation with a traffic-flow file from the selected dataset:
 
 ```bash
-cd VLMTSCS
+cd VLALight
 python -u run_video.py \
   --dataset newyork \
   --traffic-file anon_28_7_newyork_real_double.json \

@@ -1,0 +1,720 @@
+{
+  "city": "jinan",
+  "source_topology": "data/Jinan/3_4/network_topology.json",
+  "movement_exit_directions": {
+    "ET": "W",
+    "WT": "E",
+    "NT": "S",
+    "ST": "N",
+    "NL": "E",
+    "SL": "W",
+    "EL": "S",
+    "WL": "N"
+  },
+  "routes": {
+    "intersection_1_1": {
+      "sender_group": "A",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_2_1",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_1_2",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_2_1",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_1_2",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "B"
+        }
+      }
+    },
+    "intersection_1_2": {
+      "sender_group": "B",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_2_2",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_1_1",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_1_3",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_2_2",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_1_1",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_1_3",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "A"
+        }
+      }
+    },
+    "intersection_1_3": {
+      "sender_group": "A",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_2_3",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_1_2",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_2_3",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_1_2",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        }
+      }
+    },
+    "intersection_2_1": {
+      "sender_group": "B",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_1_1",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_3_1",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_2_2",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_3_1",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_1_1",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_2_2",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "A"
+        }
+      }
+    },
+    "intersection_2_2": {
+      "sender_group": "A",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_1_2",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_3_2",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_2_1",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_2_3",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_3_2",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_1_2",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_2_1",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_2_3",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "B"
+        }
+      }
+    },
+    "intersection_2_3": {
+      "sender_group": "B",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_1_3",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_3_3",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_2_2",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_3_3",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_1_3",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_2_2",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        }
+      }
+    },
+    "intersection_3_1": {
+      "sender_group": "A",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_2_1",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_4_1",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_3_2",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_4_1",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_2_1",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_3_2",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "B"
+        }
+      }
+    },
+    "intersection_3_2": {
+      "sender_group": "B",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_2_2",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_4_2",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_3_1",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_3_3",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_4_2",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_2_2",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_3_1",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_3_3",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "A"
+        }
+      }
+    },
+    "intersection_3_3": {
+      "sender_group": "A",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_2_3",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_4_3",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_3_2",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": "intersection_4_3",
+          "receiver_entry_direction": "W",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_2_3",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_3_2",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        }
+      }
+    },
+    "intersection_4_1": {
+      "sender_group": "B",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_3_1",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_4_2",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_3_1",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_4_2",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "A"
+        }
+      }
+    },
+    "intersection_4_2": {
+      "sender_group": "A",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_3_2",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_4_1",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_4_3",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_3_2",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_4_1",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "B"
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": "intersection_4_3",
+          "receiver_entry_direction": "S",
+          "is_boundary": false,
+          "receiver_group": "B"
+        }
+      }
+    },
+    "intersection_4_3": {
+      "sender_group": "B",
+      "movements": {
+        "ET": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_3_3",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "WT": {
+          "exit_direction": "E",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "NT": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_4_2",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "ST": {
+          "exit_direction": "N",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "NL": {
+          "exit_direction": "E",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        },
+        "SL": {
+          "exit_direction": "W",
+          "receiver_id": "intersection_3_3",
+          "receiver_entry_direction": "E",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "EL": {
+          "exit_direction": "S",
+          "receiver_id": "intersection_4_2",
+          "receiver_entry_direction": "N",
+          "is_boundary": false,
+          "receiver_group": "A"
+        },
+        "WL": {
+          "exit_direction": "N",
+          "receiver_id": null,
+          "receiver_entry_direction": null,
+          "is_boundary": true
+        }
+      }
+    }
+  }
+}
